@@ -1,0 +1,7 @@
+alertManager: http://prometheus-kube-prometheus-alertmanager.monitoring.svc:9093/api/v2/silences
+feishu:
+  appId: cli_a279c51899bbd013
+  appSecret: bI52vKapQP872rc6vi1DwcOFb4n7kl03
+  appAccessTokenUrl: https://open.feishu.cn/open-apis/auth/v3/app_access_token/internal
+  receiveMessageUrl: https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=chat_id
+  updateMessageUrl: https://open.feishu.cn/open-apis/im/v1/messages/%s

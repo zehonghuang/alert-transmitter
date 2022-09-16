@@ -1,0 +1,58 @@
+{
+  "config": {
+    "wide_screen_mode": true
+  },
+  "elements": [
+    {
+      "fields": [
+        {
+          "is_short": true,
+          "text": {
+            "content": "**Time:**\n{{ .Datetime }}",
+            "tag": "lark_md"
+          }
+        },
+        {
+          "is_short": true,
+          "text": {
+            "content": "**Cluster:**\n{{ .Cluster }}",
+            "tag": "lark_md"
+          }
+        },
+        {
+          "is_short": false,
+          "text": {
+            "content": "",
+            "tag": "lark_md"
+          }
+        },
+        {
+          "is_short": true,
+          "text": {
+            "content": "**Instance:**\n{{ .Instance }}",
+            "tag": "lark_md"
+          }
+        },
+        {
+          "is_short": true,
+          "text": {
+            "content": "**Namespace:**\n{{ .Namespace }}",
+            "tag": "lark_md"
+          }
+        }
+      ],
+      "tag": "div"
+    },
+
+    {
+      "tag": "hr"
+    }
+  ],
+  "header": {
+    "template": "grey",
+    "title": {
+      "content": "【Silence 4 hours】{{ .AlertName }}",
+      "tag": "plain_text"
+    }
+  }
+}
