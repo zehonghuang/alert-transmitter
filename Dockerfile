@@ -6,6 +6,5 @@ RUN go env -w GOPROXY=https://goproxy.cn
 RUN go env -w GOSUMDB=off
 RUN go mod download
 RUN go build -o main .
-RUN adduser -S -D -H -h /app appuser
-USER appuser
+EXPOSE 8000
 CMD ["GO_ENV=${GO_ENV} ./main"]
