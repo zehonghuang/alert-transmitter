@@ -3,7 +3,7 @@ RUN mkdir /app
 ADD . /app/
 WORKDIR /app
 RUN go env -w GOPROXY=https://goproxy.cn
-RUN go env -w GOSUMDB=on
+RUN go env -w GOSUMDB=off
 RUN go mod download
 RUN go build -o main .
 RUN adduser -S -D -H -h /app appuser
