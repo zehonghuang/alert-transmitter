@@ -1,7 +1,7 @@
 FROM golang:1.18
 ENV GOPROXY=https://goproxy.cn
 WORKDIR /build
-COPY ./src .
+COPY ./ .
 RUN go mod tidy
 RUN GO_EVN=${GO_EVN} go build
 
