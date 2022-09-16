@@ -1,4 +1,4 @@
-FROM golang:1.18 as builder
+FROM golang:1.18
 ENV GOPROXY=https://goproxy.cn
 WORKDIR /build
 COPY ./src .
