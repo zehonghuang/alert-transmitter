@@ -1,11 +1,13 @@
-FROM golang:1.18.2
-RUN mkdir /app
-ADD . /app/
-WORKDIR /app
-RUN go env -w GOPROXY=https://goproxy.cn
-RUN go env -w GOSUMDB=off
-RUN go mod download
-RUN go build -o main .
-RUN cd /app
+FROM golang:1.18 as builder
+ENV GOPROXY=https://goproxy.cn
+WORKDIR /build
+COPY ./src .
+RUN go mod tidy
+RUN GO_EVN=${GO_EVN} go build
+
+FROM  alpine:latest
+RUN mkdir -p /cmd
+WORKDIR  /cmd
+COPY  --from=builder /build/main  .
 EXPOSE 8000
-CMD ["GO_ENV=${GO_ENV} ./main"]
+CMD ["./main"]
