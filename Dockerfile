@@ -4,8 +4,8 @@ ENV GOPROXY=https://goproxy.cn
 WORKDIR /workspace
 # Copy all files into the image
 COPY . .
-COPY ./resource ./resource
-COPY ./template ./template
+COPY ./resource/* ./resource/
+COPY ./template/* ./template/
 # Run go mod
 RUN go mod download
 # Expose ports
