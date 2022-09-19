@@ -15,10 +15,11 @@ func silences(content *gin.Context) {
 	content.BindJSON(&cardUpdate)
 	log.Printf("%+v\n", &cardUpdate)
 
-	if IsBalnk(cardUpdate.Challenge) {
+	if !IsBalnk(cardUpdate.Challenge) {
 		content.JSON(http.StatusOK, map[string]string{
 			"challenge": cardUpdate.Challenge,
 		})
+		return
 	}
 
 	var matchers = make([]Matcher, 0)
