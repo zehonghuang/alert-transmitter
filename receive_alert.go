@@ -64,13 +64,11 @@ func assembleMessageCard(alertmessage AlertMessage) {
 			message.Content = message.Content + "\\n**Note:**\\n" + alert.Annotations.Note
 		}
 
-		template_ := template.New("card-message")
-		template_.Funcs(template.FuncMap{"counter": counter})
-		template_ = template.Must(template_.ParseFiles("template/feishu-message.txt"))
-
+		template_, _ := template.ParseFiles("template/feishu-message.txt")
 		var tpl bytes.Buffer
-		eerr := template_.ExecuteTemplate(&tpl, "template/feishu-message.txt", message)
+		eerr := template_.Execute(&tpl, message)
 		if eerr != nil {
+			log.Printf("%+v", message)
 			log.Fatal(eerr)
 		}
 		log.Printf(tpl.String() + "\n")

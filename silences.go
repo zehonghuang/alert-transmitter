@@ -56,11 +56,10 @@ func updateMessage(necessity UpdatingCardNecessity) bool {
 		Namespace: necessity.Labels["namespace"],
 	}
 
-	template_ := template.New("card-silenced-message")
-	template_ = template.Must(template_.ParseFiles("template/feishu-silenced-message.txt"))
+	template_, _ := template.ParseFiles("template/feishu-silenced-message.txt")
 
 	var tpl bytes.Buffer
-	eerr := template_.ExecuteTemplate(&tpl, "template/feishu-silenced-message.txt", templateEntity)
+	eerr := template_.Execute(&tpl, templateEntity)
 	if eerr != nil {
 		log.Fatal(eerr)
 	}
