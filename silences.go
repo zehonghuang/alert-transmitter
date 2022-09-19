@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"log"
+	"net/http"
 	"text/template"
 	"time"
 )
@@ -13,6 +14,12 @@ func silences(content *gin.Context) {
 	cardUpdate := UpdatingCard{}
 	content.BindJSON(&cardUpdate)
 	log.Printf("%+v\n", &cardUpdate)
+
+	if IsBalnk(cardUpdate.Challenge) {
+		content.JSON(http.StatusOK, map[string]string{
+			"challenge": cardUpdate.Challenge,
+		})
+	}
 
 	var matchers = make([]Matcher, 0)
 	for key, value := range cardUpdate.Action.Value {

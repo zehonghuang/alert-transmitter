@@ -47,6 +47,8 @@ type UpdatingCardAction struct {
 }
 
 type UpdatingCard struct {
+	Challenge     string             `json:"challenge"`
+	Type          string             `json:"type"`
 	OpenId        string             `json:"open_id"`
 	UserId        string             `json:"user_id"`
 	OpenMessageId string             `json:"open_message_id"`
