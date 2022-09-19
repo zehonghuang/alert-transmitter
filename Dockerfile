@@ -9,4 +9,4 @@ RUN go mod download
 # Expose ports
 EXPOSE 8000
 # Run Go program, just like locally
-ENTRYPOINT ["go","run","main.go"]
+ENTRYPOINT ["go","run","."]
