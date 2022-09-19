@@ -38,7 +38,11 @@ func assembleMessageCard(alertmessage AlertMessage) {
 			Cluster:   alert.Labels["cluster"],
 			Instance:  alert.Labels["instance"],
 			Namespace: alert.Labels["namespace"],
-			GraphsURL: alert.Annotations.Graphs,
+		}
+		if IsBalnk(alert.Annotations.Graphs) {
+			message.GraphsURL = cfg.GrafanaUrl
+		} else {
+			message.GraphsURL = alert.Annotations.Graphs
 		}
 		for key, value := range alert.Labels {
 			message.LabelsString = message.LabelsString + ",\"" + key + "\":\"" + value + "\""

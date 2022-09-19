@@ -18,6 +18,7 @@ var _client *http.Client
 var cfg Config
 
 type Config struct {
+	GrafanaUrl   string `yaml:"grafanaUrl"`
 	AlertManager string `yaml:"alertManager"`
 	Feishu       Feishu `yaml:"feishu"`
 }

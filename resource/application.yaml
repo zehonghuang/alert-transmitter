@@ -1,3 +1,4 @@
+grafanaUrl: https://monitor.prod.chilly.tech/
 alertManager: http://prometheus-kube-prometheus-alertmanager.monitoring.svc:9093/api/v2/silences
 feishu:
   appId: cli_a279c51899bbd013
