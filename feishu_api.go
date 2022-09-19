@@ -18,7 +18,7 @@ func sendMessage(message string, update bool, messageId string) bool {
 
 	if !update {
 		request, err := json.Marshal(map[string]string{
-			"receive_id": "oc_53ac2b9c09beb821bed75a8519011e45",
+			"receive_id": cfg.Feishu.ChatId,
 			"content":    message,
 			"msg_type":   "interactive",
 		})

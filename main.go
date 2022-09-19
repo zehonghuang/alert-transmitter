@@ -25,6 +25,7 @@ type Config struct {
 type Feishu struct {
 	AppId             string `yaml:"appId"`
 	AppSecret         string `yaml:"appSecret"`
+	ChatId            string `yaml:"chatId"`
 	AppAccessTokenUrl string `yaml:"appAccessTokenUrl"`
 	ReceiveMessageUrl string `yaml:"receiveMessageUrl"`
 	UpdateMessageUrl  string `yaml:"updateMessageUrl"`
