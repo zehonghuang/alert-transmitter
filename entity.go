@@ -99,6 +99,7 @@ type FeishuMessageTemplateEntity struct {
 	LabelsString string
 	Revive       bool
 	AlertCounter int
+	Threshold    int
 	Recreated    bool
 	IsBlank      func(s string) bool
 }

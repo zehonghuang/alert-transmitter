@@ -58,7 +58,7 @@
     {
       "tag": "div",
       "text": {
-        "content": "**{{ .PiecesLabels }}**{{ if (gt .AlertCounter 3) }}.等{{ .AlertCounter }}个告警{{ end }}",
+        "content": "**{{ .PiecesLabels }}**{{ if (gt .AlertCounter .Threshold) }}.等{{ .AlertCounter }}个告警{{ end }}",
         "tag": "lark_md"
       }
     },

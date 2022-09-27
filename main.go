@@ -21,6 +21,7 @@ type Config struct {
 	GrafanaUrl                string `yaml:"grafanaUrl"`
 	AlertManager              string `yaml:"alertManager"`
 	AlertManagerSingleSilence string `yaml:"alertManagerSingleSilence"`
+	AlertThreshold            int    `yaml:"alertThreshold"`
 	Feishu                    Feishu `yaml:"feishu"`
 }
 type Feishu struct {

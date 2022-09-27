@@ -37,6 +37,7 @@ func assembleMessageCard(alertmessage AlertMessage) {
 				Instance:     alert.Labels["instance"],
 				Namespace:    alert.Labels["namespace"],
 				AlertCounter: 1,
+				Threshold:    cfg.AlertThreshold,
 			}
 			alertMap[message.hashcode()] = message
 		} else {
@@ -89,7 +90,7 @@ func assembleMessageCard(alertmessage AlertMessage) {
 			message.Color = "blue"
 		}
 
-		if !IsBlank(alert.Labels["pieces"]) && (message.AlertCounter <= 3) {
+		if !IsBlank(alert.Labels["pieces"]) && (message.AlertCounter <= message.Threshold) {
 			if IsBlank(message.PiecesLabels) && (message.AlertCounter == 1) {
 				message.PiecesLabels = alert.Labels["pieces"]
 			} else {

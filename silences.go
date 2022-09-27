@@ -36,6 +36,9 @@ func callback(content *gin.Context) {
 func silence(messageId string, value map[string]string) {
 	var matchers = make([]Matcher, 0)
 	for key, value := range value {
+		if Contains(excludeLabels, key) {
+			continue
+		}
 		matchers = append(matchers, Matcher{
 			Name:    key,
 			Value:   value,
@@ -95,9 +98,6 @@ func updateMessage(necessity UpdatingCardNecessity) {
 		Recreated: IsBlank(necessity.SilenceId),
 	}
 	for k, v := range necessity.Labels {
-		if Contains(excludeLabels, k) {
-			continue
-		}
 		templateEntity.LabelsString = templateEntity.LabelsString + ",\"" + k + "\":\"" + v + "\""
 	}
 	if !IsBlank(necessity.SilenceId) {
