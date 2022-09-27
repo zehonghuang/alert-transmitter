@@ -43,10 +43,36 @@
       ],
       "tag": "div"
     },
-
     {
       "tag": "hr"
+    },
+    {{ if (not .Recreated) }}
+    {
+          "actions": [
+            {
+              "tag": "button",
+              "text": {
+                "content": "Recreate",
+                "tag": "plain_text"
+              },
+              "type": "primary",
+              "value": {
+                "unsilence": "1",
+                {{ .LabelsString }}
+              }
+            }
+          ],
+          "tag": "action"
+        }
+    {{ else }}
+    {
+          "text": {
+            "content": "<center>**Recreated**</center>",
+            "tag": "lark_md"
+          },
+          "tag": "div"
     }
+    {{ end }}
   ],
   "header": {
     "template": "grey",

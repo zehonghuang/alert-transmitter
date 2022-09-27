@@ -1,8 +1,9 @@
 grafanaUrl: https://monitor.prod.chilly.tech/
-alertManager: http://prometheus-kube-prometheus-alertmanager.monitoring.svc:9093/api/v2/silences
+alertManager: http://localhost:49509/api/v2/silences
+alertManagerSingleSilence: http://localhost:49509/api/v2/silence
 feishu:
   appId: cli_a279c51899bbd013
-  appSecret: bI52vKapQP872rc6vi1DwcOFb4n7kl03
+  appSecret: G7TGqClgiNMBroO2uoFcsbCSmnSXlSoT
   chatId: oc_53ac2b9c09beb821bed75a8519011e45
   appAccessTokenUrl: https://open.feishu.cn/open-apis/auth/v3/app_access_token/internal
   receiveMessageUrl: https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=chat_id

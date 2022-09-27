@@ -14,6 +14,7 @@ func sendMessage(message string, update bool, messageId string) bool {
 
 	headers := map[string]interface{}{
 		"Authorization": "Bearer " + refreshToken(),
+		"Content-Type":  "application/json",
 	}
 
 	if !update {
@@ -26,14 +27,14 @@ func sendMessage(message string, update bool, messageId string) bool {
 			log.Fatal(err)
 		}
 
-		response := buildRequestAndDo(bytes.NewBuffer(request), cfg.Feishu.ReceiveMessageUrl, headers)
+		response := BuildPostRequestAndDo(bytes.NewBuffer(request), cfg.Feishu.ReceiveMessageUrl, headers)
 		log.Printf("%s", response)
 		if err := json.Unmarshal(response, &result); err != nil {
 			log.Fatal(err)
 		}
 
 	} else {
-		if IsBalnk(messageId) {
+		if IsBlank(messageId) {
 			log.Fatal("MessageId should be to have value if update is true.")
 		}
 		request, err := json.Marshal(map[string]string{
@@ -42,8 +43,8 @@ func sendMessage(message string, update bool, messageId string) bool {
 		if err != nil {
 			log.Fatal(err)
 		}
-		response := buildRequestAndDo(bytes.NewBuffer(request), fmt.Sprintf(cfg.Feishu.UpdateMessageUrl, messageId), headers)
-		log.Printf("%s", string(response))
+		response := BuildRequestAndDo("PATCH", bytes.NewBuffer(request), fmt.Sprintf(cfg.Feishu.UpdateMessageUrl, messageId), headers)
+		log.Printf("Update message response: %s", string(response))
 	}
 
 	return result.Code == 0

@@ -18,9 +18,10 @@ var _client *http.Client
 var cfg Config
 
 type Config struct {
-	GrafanaUrl   string `yaml:"grafanaUrl"`
-	AlertManager string `yaml:"alertManager"`
-	Feishu       Feishu `yaml:"feishu"`
+	GrafanaUrl                string `yaml:"grafanaUrl"`
+	AlertManager              string `yaml:"alertManager"`
+	AlertManagerSingleSilence string `yaml:"alertManagerSingleSilence"`
+	Feishu                    Feishu `yaml:"feishu"`
 }
 type Feishu struct {
 	AppId             string `yaml:"appId"`
@@ -47,9 +48,9 @@ func main() {
 	gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
 	r := gin.Default()
 
-	r.POST("/api/callback", silences)
-
-	r.POST("/api/receiveAlert", receiveAlert)
+	api := r.Group("/api/")
+	api.POST("/callback", callback)
+	api.POST("/receiveAlert", receiveAlert)
 
 	r.Run()
 }
@@ -57,7 +58,7 @@ func main() {
 func initConfig() {
 	env := os.Getenv("GO_ENV")
 	viper.AddConfigPath("./resource")
-	if !IsBalnk(env) {
+	if !IsBlank(env) {
 		viper.SetConfigName("application-" + env)
 	} else {
 		viper.SetConfigName("application")

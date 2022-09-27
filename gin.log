@@ -4,10 +4,10 @@
  - using env:	export GIN_MODE=release
  - using code:	gin.SetMode(gin.ReleaseMode)
 
-[GIN-debug] POST   /api/callback             --> main.silences (3 handlers)
+[GIN-debug] POST   /api/callback             --> main.callback (3 handlers)
 [GIN-debug] POST   /api/receiveAlert         --> main.receiveAlert (3 handlers)
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 [GIN-debug] Environment variable PORT is undefined. Using port :8080 by default
 [GIN-debug] Listening and serving HTTP on :8080
-[GIN] 2022/09/19 - 16:06:55 | 200 |       277.7µs |             ::1 | POST     "/api/callback"
+[GIN] 2022/09/27 - 12:04:30 | 200 |    477.5589ms |             ::1 | POST     "/api/callback"

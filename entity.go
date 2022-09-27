@@ -93,8 +93,32 @@ type FeishuMessageTemplateEntity struct {
 	Cluster      string
 	Instance     string
 	Namespace    string
+	PiecesLabels string
 	Content      string
 	GraphsURL    string
 	LabelsString string
 	Revive       bool
+	AlertCounter int
+	Recreated    bool
+	IsBlank      func(s string) bool
+}
+
+func (entity FeishuMessageTemplateEntity) IsBlank_(s string) bool {
+	return IsBlank(s)
+}
+
+func (entity FeishuMessageTemplateEntity) hashcode() string {
+	alertname := entity.AlertName
+	cluster := entity.Cluster
+	instance := entity.Instance
+	namespace := entity.Namespace
+	return HashCodes([]string{alertname, cluster, instance, namespace})
+}
+
+func (alert Alert) hashcode() string {
+	alertname := alert.Labels["alertname"]
+	cluster := alert.Labels["cluster"]
+	instance := alert.Labels["instance"]
+	namespace := alert.Labels["namespace"]
+	return HashCodes([]string{alertname, cluster, instance, namespace})
 }

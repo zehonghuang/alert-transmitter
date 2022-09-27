@@ -2,7 +2,7 @@ package main
 
 import "regexp"
 
-func IsBalnk(s string) bool {
+func IsBlank(s string) bool {
 	if s == "" {
 		return true
 	}

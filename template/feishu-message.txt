@@ -51,6 +51,21 @@
         "tag": "lark_md"
       }
     },
+    {{ if (not (.IsBlank_ .PiecesLabels)) }}
+    {
+          "tag": "hr"
+    },
+    {
+      "tag": "div",
+      "text": {
+        "content": "**{{ .PiecesLabels }}**{{ if (gt .AlertCounter 3) }}.等{{ .AlertCounter }}个告警{{ end }}",
+        "tag": "lark_md"
+      }
+    },
+    {
+      "tag": "hr"
+    },
+    {{ end }}
     {
       "actions": [
         {
@@ -61,6 +76,7 @@
           },
           "type": "primary",
           "value": {
+            "unsilence": "0",
             {{ .LabelsString }}
           }
         }
